@@ -67,5 +67,7 @@ habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habi
 );
  
 
-
  ALTER TABLE habitacion ADD COLUMN disponible BOOLEAN;
+
+ SELECT * FROM reserva;
+ SELECT * FROM habitacion
