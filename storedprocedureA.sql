@@ -38,6 +38,7 @@ CALL agregar_habitaciones('H006', 105, 'individual');
 SELECT * FROM Habitacion;
 SELECT * FROM Reserva;
 DROP PROCEDURE agregar_habitaciones;
+# modificar el valor cada vez que se agrega un dato
 ALTER TABLE habitacion ALTER disponible SET DEFAULT 0;
 
 # AGREGAR PAGO
@@ -79,9 +80,6 @@ CALL agregar_nueva_reserva ('R006', '2024-04-05', '2024-04-08', 'H001', 45678901
 CALL agregar_nueva_reserva ('R007', '2024-08-27', '2024-08-29', 'H006', 345789112, 'P007');
 
 SELECT * FROM reserva;
-
-UPDATE habitacion SET disponible = 1 WHERE habitacion_id = "H001";
-# ES NECESARIO? YA SE CREO EL ALTER TABLE QUE AGREGA POR DEFECTO EL 1 y 0
 
 
 # PROCEDURE QUE ELIMINA RESERVAS SEGÚN EL CÓDIGO DE RESERVA

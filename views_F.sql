@@ -1,4 +1,4 @@
--- CREATE VIEWS
+-- CREATE VIEWS RESERVAS REALIZADAS EN EL DIA ACTUAL
 USE Hoteles;
 CREATE VIEW actualizacion_reserva_dia AS 
 SELECT Reserva.fecha_llegada FROM Reserva
