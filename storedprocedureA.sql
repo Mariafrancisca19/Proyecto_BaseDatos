@@ -29,6 +29,9 @@ CALL agregar_clientes(202304586, 'Juan', 'Perez', 'perez@unn.com');
 CALL agregar_clientes(234567890, 'Ana', 'Garcia', 'anag@unn.com');
 CALL agregar_clientes(345678901, 'Carlos', 'Rodriguez', 'rodriguez@unn.com');
 CALL agregar_clientes(456789012, 'Maria', 'Lopez', 'lopez@unn.com');
+CALL agregar_clientes(120789000, 'Daniel', 'Barreto', 'barreto@unn.com');
+CALL agregar_clientes(111789080, 'Isaac', 'Floreto', 'floreto@unn.com');
+
 
 # AGREGAR HABITACIONES
 DELIMITER //
@@ -44,6 +47,8 @@ CALL agregar_habitaciones('H002', 507, 'VIP');
 CALL agregar_habitaciones('H003', 608, 'matrimonial');
 CALL agregar_habitaciones('H004', 302, 'individual');
 CALL agregar_habitaciones('H005', 202, 'suit');
+CALL agregar_habitaciones('H010', 409, 'individual');
+
 SELECT * FROM Habitacion;
 SELECT * FROM Reserva;
 DROP PROCEDURE agregar_habitaciones;
@@ -64,11 +69,13 @@ CALL agregar_pago ('P004', 'Plazos');
 CALL agregar_pago ('P005', 'Contado');
 CALL agregar_pago ('P006', 'Credito');
 CALL agregar_pago ('P007', 'Plazos');
+CALL agregar_pago ('P008', 'Efectivo');
+
 SELECT * FROM Pago;
 DROP PROCEDURE agregar_pago;
 
-
 # AGREGAR RESERVA
+# Se modificó el agregar_nueva_reserva para que tenga la llave foránea de Hotel
 DROP PROCEDURE agregar_nueva_reserva;
 DELIMITER //
 CREATE PROCEDURE agregar_nueva_reserva(IN codigo_reserva VARCHAR(10), 
@@ -76,17 +83,26 @@ IN fecha_llegada DATE,
 IN fecha_salida DATE, 
 IN habitacion_id VARCHAR(10),
 IN numero_cedula INT,
-IN codigo_de_pago VARCHAR(10))
+IN codigo_de_pago VARCHAR(10),
+IN razon_social VARCHAR(20)
+)
 BEGIN
-    INSERT INTO Reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago) 
-    VALUES (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago);
+    INSERT INTO Reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago, razon_social) 
+    VALUES (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago, razon_social);
 END //
 DELIMITER;
 
 CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 234567890, 'P003');
 CALL agregar_nueva_reserva ('R005', '2024-03-09', '2024-03-17', 'H004', 345678901, 'P004');
 CALL agregar_nueva_reserva ('R006', '2024-04-05', '2024-04-08', 'H005', 456789012, 'P005');
+
+CALL agregar_nueva_reserva ('R007', '2024-02-06', '2024-02-10', 'H006', 120789000, 'P006');
+CALL agregar_nueva_reserva ('R008', '2024-01-20', '2024-01-23', 'H010', 111789080, 'P008', 'H1358');
 SELECT * FROM reserva;
+SELECT * FROM Pago;
+SELECT * FROM Hotel; 
+
+SELECT * FROM habitacion;
 
 
 # PROCEDURE QUE ELIMINA RESERVAS SEGÚN EL CÓDIGO DE RESERVA
