@@ -8,5 +8,4 @@ BEGIN
 END //
 DELIMITER;
 
-
 CALL disponibilidad_habitacion("2024-11-27")

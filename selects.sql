@@ -6,3 +6,4 @@ SELECT * FROM Reserva;
 SELECT * FROM Pago;
 SELECT * FROM Habitacion;
 SELECT * FROM Codigos;
+SELECT * FROM Notificaciones;
