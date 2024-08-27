@@ -1,5 +1,16 @@
 USE Hoteles;
 
+
+# CREATE TABLE Hotel (razon_social VARCHAR(10) PRIMARY KEY ,
+# nombre VARCHAR(60),
+# ubicacion VARCHAR(60));
+
+# AGREGAR HOTELES
+DELIMITER //
+CREATE PROCEDURE agregar_hotel (IN razon_social VARCHAR(10))
+END;
+DELIMITER;
+
 # AGREGAR CLIENTES
 DELIMITER //
 CREATE PROCEDURE agregar_clientes(IN numero_cedula INT, 
