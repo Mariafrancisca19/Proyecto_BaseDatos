@@ -18,8 +18,7 @@ fecha_llegada DATE,
 fecha_salida DATE,
 habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id),
 numero_cedula INT,FOREIGN KEY (numero_cedula) REFERENCES Clientes (numero_cedula),
-codigo_de_pago VARCHAR (10), FOREIGN KEY (codigo_de_pago) REFERENCES Pago (codigo_de_pago)
-);
+codigo_de_pago VARCHAR (10), FOREIGN KEY (codigo_de_pago) REFERENCES Pago (codigo_de_pago));
 
 CREATE TABLE Pago (codigo_de_pago VARCHAR(10) PRIMARY KEY,
 tipo_pago VARCHAR(10));
@@ -33,5 +32,16 @@ codigo_de_pago VARCHAR(10),
 FOREIGN KEY(codigo_de_pago) REFERENCES Pago(codigo_de_pago),
 numero_cedula INT, 
 FOREIGN KEY (numero_cedula) REFERENCES Clientes(numero_cedula),
-habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id)
+habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id));
+
+CREATE TABLE clientes_eliminados (numero_cedula INT PRIMARY KEY,
+nombre VARCHAR (60),
+apellido VARCHAR (60),
+correo VARCHAR(60) UNIQUE);
+
+CREATE TABLE Notificaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_notificacion VARCHAR(50),
+    mensaje TEXT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

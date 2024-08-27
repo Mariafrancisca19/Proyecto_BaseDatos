@@ -13,3 +13,5 @@ INSERT INTO Habitacion (habitacion_id,num_habitacion,tipo_habitacion)
 VALUES ("H001", 234,"individual");
 INSERT INTO Codigos (codigo_reserva, codigo_de_pago,numero_cedula,habitacion_id)
 VALUES ("R001","P001",101170698,"H001");
+
+
