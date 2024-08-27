@@ -31,6 +31,8 @@ DELIMITER;
 
 CALL agregar_habitaciones('H002', 507, 'VIP');
 CALL agregar_habitaciones('H003', 608, 'matrimonial');
+CALL agregar_habitaciones('H004', 302, 'individual');
+CALL agregar_habitaciones('H005', 202, 'suit');
 SELECT * FROM Habitacion;
 DROP PROCEDURE agregar_habitaciones;
 ALTER TABLE habitacion ALTER disponible SET DEFAULT 0;
@@ -46,6 +48,8 @@ DELIMITER;
 CALL agregar_pago ('P002', 'Plazos');
 CALL agregar_pago ('P003', 'Contado');
 CALL agregar_pago ('P004', 'Plazos');
+CALL agregar_pago ('P005', 'Contado');
+CALL agregar_pago ('P006', 'Credito');
 SELECT * FROM Pago;
 DROP PROCEDURE agregar_pago;
 
@@ -66,7 +70,8 @@ END //
 DELIMITER;
 
 CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 234567890, 'P003');
-
+CALL agregar_nueva_reserva ('R005', '2024-03-09', '2024-03-17', 'H004', 345678901, 'P004');
+CALL agregar_nueva_reserva ('R006', '2024-04-05', '2024-04-08', 'H005', 456789012, 'P005');
 SELECT * FROM reserva;
 
 UPDATE habitacion SET disponible = 1 WHERE habitacion_id = "H001";
