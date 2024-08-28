@@ -6,5 +6,5 @@ AFTER INSERT ON Reserva
 FOR EACH ROW
 BEGIN
     INSERT INTO Notificaciones (tipo_notificacion, mensaje)
-    VALUES ('Nueva Reserva', CONCAT('Se ha creado una nueva reserva con código: ', NEW.codigo_reserva, '. Cliente: ', NEW.numero_cedula, '. Habitacion: ', NEW.habitacion_id));
+    VALUES ('Nueva reserva', CONCAT('Se ha creado una nueva reserva con código: ', NEW.codigo_reserva, '. Cliente: ', NEW.id_usuario, '. Habitacion: ', NEW.habitacion_id));
 END;

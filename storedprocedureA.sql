@@ -1,48 +1,52 @@
 USE Hoteles;
 
-
-# CREATE TABLE Hotel (razon_social VARCHAR(10) PRIMARY KEY ,
-# nombre VARCHAR(60),
-# ubicacion VARCHAR(60));
-
 # AGREGAR HOTELES
 DELIMITER //
-CREATE PROCEDURE agregar_hotel (IN razon_social VARCHAR(10))
+CREATE PROCEDURE agregar_hotel (IN p_razon_social VARCHAR(10),
+IN p_nombre VARCHAR(60),
+IN p_ubicacion VARCHAR(60),
+IN p_codigo_reserva VARCHAR(60),
+IN p_habitacion_id VARCHAR(10),
+IN p_id_usuario VARCHAR(20))
+BEGIN
+    INSERT INTO Hotel (razon_social, nombre, ubicacion, codigo_reserva, habitacion_id, id_usuario)
+    VALUES (p_razon_social, p_nombre, p_ubicacion, p_codigo_reserva, p_habitacion_id, p_id_usario);
 END;
 DELIMITER;
 
 # AGREGAR CLIENTES
 DELIMITER //
-CREATE PROCEDURE agregar_clientes(IN numero_cedula INT, 
-IN nombre VARCHAR(60), 
-IN apellido VARCHAR(60), 
-IN correo VARCHAR(60))
+CREATE PROCEDURE agregar_usuarios(IN p_id_usuario VARCHAR(20), 
+IN p_nombre VARCHAR(60), 
+IN p_apellido VARCHAR(20),
+IN p_correo VARCHAR(60),
+IN p_tel TEXT)
 BEGIN 
-    INSERT INTO Clientes (numero_cedula, nombre, apellido, correo) 
-    VALUES (numero_cedula, nombre, apellido, correo);
+    INSERT INTO Usuarios(id_usuario, nombre, apellido, correo, tel) 
+    VALUES (p_id_usuario, p_nombre,p_apellido, p_correo, p_tel);
 END //
 DELIMITER;
+DROP PROCEDURE agregar_usuarios;
 
-DROP PROCEDURE agregar_clientes;
-SELECT * FROM Clientes;
-CALL agregar_clientes(202304586, 'Juan', 'Perez', 'perez@unn.com');
-CALL agregar_clientes(234567890, 'Ana', 'Garcia', 'anag@unn.com');
-CALL agregar_clientes(345678901, 'Carlos', 'Rodriguez', 'rodriguez@unn.com');
-CALL agregar_clientes(456789012, 'Maria', 'Lopez', 'lopez@unn.com');
-CALL agregar_clientes(120789000, 'Daniel', 'Barreto', 'barreto@unn.com');
-CALL agregar_clientes(111789080, 'Isaac', 'Floreto', 'floreto@unn.com');
+SELECT * FROM Usuarios;
+CALL agregar_usuarios("AnitaLaMasBonita", 'Ana', 'Garcia', 'anag@unn.com', 56895424);
+CALL agregar_usuarios("CarlosR", 'Carlos', 'Rodriguez', 'rodriguez@unn.com', 90231536);
+CALL agregar_usuarios("MaLopez", 'Maria', 'Lopez', 'lopez@unn.com', 23457834);
+CALL agregar_usuarios("DaniBarr", 'Daniel', 'Barreto', 'barreto@unn.com', 99785634);
+CALL agregar_usuarios("IsaacFlor", 'Isaac', 'Floreto', 'floreto@unn.com', 87653421);
 
 
 # AGREGAR HABITACIONES
 DELIMITER //
-CREATE PROCEDURE agregar_habitaciones (IN habitacion_id VARCHAR(10), 
-IN num_habitacion INT, 
-IN tipo_habitacion TEXT)
+CREATE PROCEDURE agregar_habitaciones (IN p_habitacion_id VARCHAR(10), 
+IN p_num_habitacion INT, 
+IN p_tipo_habitacion TEXT)
 BEGIN
     INSERT INTO Habitacion (habitacion_id, num_habitacion, tipo_habitacion) 
-    VALUES (habitacion_id, num_habitacion, tipo_habitacion);
+    VALUES (p_habitacion_id, p_num_habitacion, p_tipo_habitacion);
 END //
 DELIMITER;
+
 CALL agregar_habitaciones('H002', 507, 'VIP');
 CALL agregar_habitaciones('H003', 608, 'matrimonial');
 CALL agregar_habitaciones('H004', 302, 'individual');
@@ -57,10 +61,10 @@ ALTER TABLE habitacion ALTER disponible SET DEFAULT 0;
 
 # AGREGAR PAGO
 DELIMITER //
-CREATE PROCEDURE agregar_pago(IN codigo_de_pago VARCHAR(10), tipo_pago VARCHAR(10))
+CREATE PROCEDURE agregar_pago(IN p_codigo_de_pago VARCHAR(10), p_tipo_pago VARCHAR(10))
 BEGIN
     INSERT INTO Pago (codigo_de_pago, tipo_pago) 
-    VALUES (codigo_de_pago, tipo_pago);
+    VALUES (p_codigo_de_pago, p_tipo_pago);
 END //
 DELIMITER;
 CALL agregar_pago ('P002', 'Plazos');
@@ -78,26 +82,21 @@ DROP PROCEDURE agregar_pago;
 # Se modificó el agregar_nueva_reserva para que tenga la llave foránea de Hotel
 DROP PROCEDURE agregar_nueva_reserva;
 DELIMITER //
-CREATE PROCEDURE agregar_nueva_reserva(IN codigo_reserva VARCHAR(10), 
-IN fecha_llegada DATE, 
-IN fecha_salida DATE, 
-IN habitacion_id VARCHAR(10),
-IN numero_cedula INT,
-IN codigo_de_pago VARCHAR(10),
-IN razon_social VARCHAR(20)
+CREATE PROCEDURE agregar_nueva_reserva(IN p_codigo_reserva VARCHAR(10), 
+IN p_fecha_llegada DATE, 
+IN p_fecha_salida DATE, 
+IN p_habitacion_id VARCHAR(10),
+IN p_id_usuario VARCHAR(20),
+IN p_codigo_de_pago VARCHAR(10),
+IN p_razon_social VARCHAR(20)
 )
 BEGIN
-    INSERT INTO Reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago, razon_social) 
-    VALUES (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, numero_cedula, codigo_de_pago, razon_social);
+    INSERT INTO Reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, id_usuario, codigo_de_pago, razon_social) 
+    VALUES (p_codigo_reserva, p_fecha_llegada, p_fecha_salida, p_habitacion_id, p_id_usuario, p_codigo_de_pago, p_razon_social);
 END //
 DELIMITER;
 
-CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 234567890, 'P003');
-CALL agregar_nueva_reserva ('R005', '2024-03-09', '2024-03-17', 'H004', 345678901, 'P004');
-CALL agregar_nueva_reserva ('R006', '2024-04-05', '2024-04-08', 'H005', 456789012, 'P005');
-
-CALL agregar_nueva_reserva ('R007', '2024-02-06', '2024-02-10', 'H006', 120789000, 'P006');
-CALL agregar_nueva_reserva ('R008', '2024-01-20', '2024-01-23', 'H010', 111789080, 'P008', 'H1358');
+CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Ale23', 'P003', 'H1357');
 SELECT * FROM reserva;
 SELECT * FROM Pago;
 SELECT * FROM Hotel; 
@@ -107,9 +106,9 @@ SELECT * FROM habitacion;
 
 # PROCEDURE QUE ELIMINA RESERVAS SEGÚN EL CÓDIGO DE RESERVA
 DELIMITER //
-CREATE PROCEDURE cancelar_reserva(IN e_codigo_reserva VARCHAR(10))
+CREATE PROCEDURE cancelar_reserva(IN p_codigo_reserva VARCHAR(10))
 BEGIN
-    DELETE FROM Reserva WHERE codigo_reserva = e_codigo_reserva;
+    DELETE FROM Reserva WHERE codigo_reserva = p_codigo_reserva;
 END //
 DELIMITER;
 CALL cancelar_reserva('R001');
