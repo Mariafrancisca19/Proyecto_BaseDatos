@@ -8,4 +8,5 @@ SELECT * FROM Habitacion;
 SELECT * FROM Codigos;
 SELECT * FROM Notificaciones;
 
-UPDATE habitacion SET razon_social = "RS001" WHERE tipo_habitacion = "VIP";
+-- insertar actualizaciones a las tablas
+UPDATE habitacion SET codigo_reserva = "RS002" WHERE tipo_habitacion = "Suite";
