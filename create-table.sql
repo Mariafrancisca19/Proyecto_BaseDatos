@@ -2,12 +2,15 @@ CREATE DATABASE Hoteles;
 
 use Hoteles;
 
-CREATE TABLE Usuarios (id_usuario VARCHAR(20) PRIMARY KEY ,nombre VARCHAR(20),apellido VARCHAR(20),correo VARCHAR(100) UNIQUE,tel TEXT);
-
-CREATE TABLE Administrador (id_administrador INT PRIMARY KEY AUTO_INCREMENT,id_usuario VARCHAR(20), FOREIGN KEY(id_usuario) REFERENCES Usuarios(id_usuario));
+CREATE TABLE Usuarios (id_usuario VARCHAR(20) PRIMARY KEY, 
+nombre VARCHAR(20),
+apellido VARCHAR(20),
+correo VARCHAR(100) UNIQUE,
+tel TEXT);
+CREATE TABLE Administrador (id_administrador INT PRIMARY KEY AUTO_INCREMENT,
+id_usuario VARCHAR(20), FOREIGN KEY(id_usuario) REFERENCES Usuarios(id_usuario));
 
 # Se modificó Hotel y Reserva, se añadieron llaves foráneas
-
 CREATE TABLE Hotel (razon_social VARCHAR(10) PRIMARY KEY ,
 nombre VARCHAR(60),
 ubicacion VARCHAR(60),
@@ -44,12 +47,9 @@ id_usuario VARCHAR(20),
 FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
 habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id));
 
-
-
-# TRIGGER
+# Tabla donde se agregan los datos que dispara el TRIGGER
 CREATE TABLE Notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);

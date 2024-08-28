@@ -29,12 +29,7 @@ DELIMITER;
 DROP PROCEDURE agregar_usuarios;
 
 SELECT * FROM Usuarios;
-CALL agregar_usuarios("AnitaLaMasBonita", 'Ana', 'Garcia', 'anag@unn.com', 56895424);
-CALL agregar_usuarios("CarlosR", 'Carlos', 'Rodriguez', 'rodriguez@unn.com', 90231536);
-CALL agregar_usuarios("MaLopez", 'Maria', 'Lopez', 'lopez@unn.com', 23457834);
-CALL agregar_usuarios("DaniBarr", 'Daniel', 'Barreto', 'barreto@unn.com', 99785634);
-CALL agregar_usuarios("IsaacFlor", 'Isaac', 'Floreto', 'floreto@unn.com', 87653421);
-
+CALL agregar_usuarios("Anita45", 'Ana', 'Garcia', 'anag@unn.com', 56895424);
 
 # AGREGAR HABITACIONES
 DELIMITER //
@@ -48,10 +43,6 @@ END //
 DELIMITER;
 
 CALL agregar_habitaciones('H002', 507, 'VIP');
-CALL agregar_habitaciones('H003', 608, 'matrimonial');
-CALL agregar_habitaciones('H004', 302, 'individual');
-CALL agregar_habitaciones('H005', 202, 'suit');
-CALL agregar_habitaciones('H010', 409, 'individual');
 
 SELECT * FROM Habitacion;
 SELECT * FROM Reserva;
@@ -68,12 +59,6 @@ BEGIN
 END //
 DELIMITER;
 CALL agregar_pago ('P002', 'Plazos');
-CALL agregar_pago ('P003', 'Contado');
-CALL agregar_pago ('P004', 'Plazos');
-CALL agregar_pago ('P005', 'Contado');
-CALL agregar_pago ('P006', 'Credito');
-CALL agregar_pago ('P007', 'Plazos');
-CALL agregar_pago ('P008', 'Efectivo');
 
 SELECT * FROM Pago;
 DROP PROCEDURE agregar_pago;
@@ -96,7 +81,7 @@ BEGIN
 END //
 DELIMITER;
 
-CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Ale23', 'P003', 'H1357');
+CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Anita45', 'P003', 'H1357');
 SELECT * FROM reserva;
 SELECT * FROM Pago;
 SELECT * FROM Hotel; 
