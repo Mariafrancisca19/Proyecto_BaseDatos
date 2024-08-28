@@ -1,7 +1,8 @@
 USE Hoteles;
 
 -- consultas SQL
-SELECT MAX()
+-- hotelescon mayor numero de reserva
+SELECT 
 
 
-
+ 
