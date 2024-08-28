@@ -5,7 +5,7 @@ SELECT * FROM Hotel;
 SELECT * FROM Reserva;
 SELECT * FROM Pago;
 SELECT * FROM Habitacion;
-SELECT * FROM Codigos;
+SELECT * FROM Codigos; 
 SELECT * FROM Notificaciones;
 
 -- insertar actualizaciones a las tablas

@@ -65,4 +65,4 @@ CREATE TABLE Notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP); 
