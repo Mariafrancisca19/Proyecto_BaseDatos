@@ -8,4 +8,7 @@ USE Hoteles;
  ALTER TABLE habitacion MODIFY tipo_habitacion TEXT;
 
 # Este alter coloca un valor por defecto a la columna disponible y lo pone en 0
-ALTER TABLE habitacion ALTER COLUMN disponible SET DEFAULT 0;
+ALTER TABLE habitacion ALTER COLUMN disponible SET DEFAULT 1;
+
+
+SELECT * FROM Habitacion;

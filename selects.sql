@@ -7,3 +7,5 @@ SELECT * FROM Pago;
 SELECT * FROM Habitacion;
 SELECT * FROM Codigos;
 SELECT * FROM Notificaciones;
+
+UPDATE habitacion SET razon_social = "RS001" WHERE tipo_habitacion = "VIP";

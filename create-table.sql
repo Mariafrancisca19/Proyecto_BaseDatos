@@ -28,11 +28,13 @@ codigo_de_pago VARCHAR (10), FOREIGN KEY (codigo_de_pago) REFERENCES Pago (codig
 
 SELECT * FROM Reserva;
 
---Crear llave foranea con ALTER a una tabla
+--Crear llave foranea con ALTER a una tabla - Tabla Reserva
 ALTER TABLE Reserva
   ADD COLUMN razon_social VARCHAR(20),
   ADD FOREIGN KEY razon_social(razon_social) REFERENCES Hotel(razon_social) ON DELETE CASCADE;
 
+
+SELECT * FROM Reserva;
 CREATE TABLE Pago (codigo_de_pago VARCHAR(10) PRIMARY KEY,
 tipo_pago VARCHAR(10));
 
@@ -46,6 +48,13 @@ FOREIGN KEY(codigo_de_pago) REFERENCES Pago(codigo_de_pago),
 id_usuario VARCHAR(20), 
 FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
 habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id));
+
+--Crear llave foranea con ALTER a una tabla - Tabla Codigos
+ALTER TABLE Codigos
+  ADD COLUMN razon_social VARCHAR(20),
+  ADD FOREIGN KEY razon_social(razon_social) REFERENCES Hotel(razon_social) ON DELETE CASCADE;
+
+SELECT * FROM Codigos;
 
 # Tabla donde se agregan los datos que dispara el TRIGGER
 CREATE TABLE Notificaciones (
