@@ -33,6 +33,7 @@ ALTER TABLE Reserva
   ADD COLUMN razon_social VARCHAR(20),
   ADD FOREIGN KEY razon_social(razon_social) REFERENCES Hotel(razon_social) ON DELETE CASCADE;
 
+
 SELECT * FROM Reserva;
 CREATE TABLE Pago (codigo_de_pago VARCHAR(10) PRIMARY KEY,
 tipo_pago VARCHAR(10));

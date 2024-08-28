@@ -151,3 +151,6 @@ VALUES ("R001", "P001", 'Ale23', "H001", "RS001"),
 ("R018", "P018", 'Isabel6', "H018", "RS018"),
 ("R019", "P019", 'Rosa32', "H019", "RS019"),
 ("R020", "P020", 'Jose20', "H020", "RS020");
+
+
+INSERT INTO Habitacion (habitacion_id,num_habitacion,tipo_habitacion) VALUES ("H021",121,"Matrimonial")

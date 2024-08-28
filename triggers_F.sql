@@ -15,6 +15,6 @@ SELECT * FROM reserva
 -- Comprobacion de la actualizacion de la disponibilidad de habitacion
 
 INSERT INTO reserva (codigo_reserva,fecha_llegada,fecha_salida,habitacion_id,id_usuario,codigo_de_pago) 
-VALUES ("R009","2024-09-28","2024-09-29","H004","Ale23","P007");
+VALUES ("R022","2024-08-28","2024-09-29","H020","Ale23","P008");
 
 
