@@ -1,6 +1,6 @@
 # Seleccionar tablas
 SELECT * FROM Administrador;
-SELECT * FROM Clientes;
+SELECT * FROM Usuarios;
 SELECT * FROM Hotel;
 SELECT * FROM Reserva;
 SELECT * FROM Pago;

@@ -1,28 +1,29 @@
-CREATE TABLE Administrador (codigo_admi VARCHAR(10) PRIMARY KEY,
-nombre VARCHAR (60),
-apellido VARCHAR (60),
-correo VARCHAR (60) UNIQUE);
+CREATE DATABASE Hoteles;
 
-CREATE TABLE Clientes (numero_cedula INT PRIMARY KEY,
-nombre VARCHAR (60),
-apellido VARCHAR (60),
-correo VARCHAR(60) UNIQUE);
+use Hoteles;
+
+CREATE TABLE Usuarios (id_usuario VARCHAR(20) PRIMARY KEY, 
+nombre VARCHAR(20),
+apellido VARCHAR(20),
+correo VARCHAR(100) UNIQUE,
+tel TEXT);
+CREATE TABLE Administrador (id_administrador INT PRIMARY KEY AUTO_INCREMENT,
+id_usuario VARCHAR(20), FOREIGN KEY(id_usuario) REFERENCES Usuarios(id_usuario));
 
 # Se modificó Hotel y Reserva, se añadieron llaves foráneas
-
 CREATE TABLE Hotel (razon_social VARCHAR(10) PRIMARY KEY ,
 nombre VARCHAR(60),
 ubicacion VARCHAR(60),
 codigo_reserva VARCHAR(10), FOREIGN KEY(codigo_reserva) REFERENCES Reserva(codigo_reserva),
 habitacion_id VARCHAR(10), FOREIGN KEY (habitacion_id) REFERENCES Habitacion (habitacion_id),
-numero_cedula INT, FOREIGN KEY (numero_cedula) REFERENCES Clientes (numero_cedula));
+id_usuario VARCHAR(20), FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario));
 
 CREATE TABLE Reserva (
 codigo_reserva VARCHAR(10) PRIMARY KEY,
 fecha_llegada DATE,
 fecha_salida DATE,
 habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id),
-numero_cedula INT,FOREIGN KEY (numero_cedula) REFERENCES Clientes (numero_cedula),
+id_usuario VARCHAR(20),FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario),
 codigo_de_pago VARCHAR (10), FOREIGN KEY (codigo_de_pago) REFERENCES Pago (codigo_de_pago));
 
 SELECT * FROM Reserva;
@@ -42,18 +43,13 @@ tipo_habitacion VARCHAR (10));
 CREATE TABLE Codigos (codigo_reserva VARCHAR(10) PRIMARY KEY,
 codigo_de_pago VARCHAR(10), 
 FOREIGN KEY(codigo_de_pago) REFERENCES Pago(codigo_de_pago),
-numero_cedula INT, 
-FOREIGN KEY (numero_cedula) REFERENCES Clientes(numero_cedula),
+id_usuario VARCHAR(20), 
+FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
 habitacion_id VARCHAR(10), FOREIGN KEY(habitacion_id) REFERENCES Habitacion(habitacion_id));
 
-CREATE TABLE clientes_eliminados (numero_cedula INT PRIMARY KEY,
-nombre VARCHAR (60),
-apellido VARCHAR (60),
-correo VARCHAR(60) UNIQUE);
-
+# Tabla donde se agregan los datos que dispara el TRIGGER
 CREATE TABLE Notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);

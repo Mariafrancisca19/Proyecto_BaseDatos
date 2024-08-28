@@ -16,7 +16,6 @@ SELECT fecha_llegada
 FROM Reserva
 WHERE fecha_llegada < fecha_salida;
 
-
 SELECT *
 FROM consultar_reserva_fecha_especifica
 WHERE fecha_llegada = '2024-06-12';
