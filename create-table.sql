@@ -54,6 +54,10 @@ ALTER TABLE Codigos
   ADD COLUMN razon_social VARCHAR(20),
   ADD FOREIGN KEY razon_social(razon_social) REFERENCES Hotel(razon_social) ON DELETE CASCADE;
 
+ALTER TABLE habitacion
+ADD COLUMN codigo_reserva VARCHAR(20),
+ADD FOREIGN KEY codigo_reserva(codigo_reserva) REFERENCES reserva(codigo_reserva) ON DELETE CASCADE;  
+
 SELECT * FROM Codigos;
 
 # Tabla donde se agregan los datos que dispara el TRIGGER
