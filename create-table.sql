@@ -58,7 +58,6 @@ ALTER TABLE habitacion
 ADD COLUMN codigo_reserva VARCHAR(20),
 ADD FOREIGN KEY codigo_reserva(codigo_reserva) REFERENCES reserva(codigo_reserva) ON DELETE CASCADE;  
 
-SELECT * FROM Codigos;
 
 # Tabla donde se agregan los datos que dispara el TRIGGER
 CREATE TABLE Notificaciones (
@@ -66,3 +65,6 @@ CREATE TABLE Notificaciones (
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+
+SELECT * FROM Habitacion;
