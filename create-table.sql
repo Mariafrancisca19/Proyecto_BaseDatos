@@ -66,3 +66,17 @@ CREATE TABLE Notificaciones (
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

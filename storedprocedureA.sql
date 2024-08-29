@@ -81,7 +81,7 @@ BEGIN
 END //
 DELIMITER;
 
-CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Anita45', 'P003', 'H1357');
+CALL agregar_nueva_reserva ('R022', '2024-08-29', '2024-08-30', 'H003', 'Anita45', 'P003', 'RS004');
 SELECT * FROM reserva;
 SELECT * FROM Pago;
 SELECT * FROM Hotel; 
