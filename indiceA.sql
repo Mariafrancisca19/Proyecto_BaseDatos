@@ -1,8 +1,15 @@
-ALTER TABLE Pago
-DROP INDEX codigos_pagos;
-CREATE INDEX filtro_pagos
-ON Pago (codigo_de_pago);
-SHOW INDEX FROM codigos_pagos;
 
-SELECT * FROM Pago;         
+# INDEX que muestra los hoteles según la ubicación
+CREATE INDEX ubicacion_hotel
+ON Hotel (ubicacion);
+
+SELECT * FROM Hotel WHERE ubicacion = 'Santa Ana';
+
+# INDEX que muestra la disponibilidad de habitaciones según el hotel.
+CREATE INDEX habitaciones_dispo
+ON Habitacion (disponible, razon_social);
+
+SELECT * FROM Habitacion WHERE disponible = 'Disponible' AND razon_social = 'RS001';
+
+
 

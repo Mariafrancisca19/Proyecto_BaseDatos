@@ -1,6 +1,36 @@
-# 1) Consulta para buscar hoteles cuya ubicación termina con un texto específico.
-# 2) Consulta para obtener las reservas de un cliente (por email) realizadas en el mes anterior.
-# 3) Consulta para calcular el promedio de reservas diarias en un hotel.
-# 4) Consulta para identificar el hotel con la mayor ocupación en el mes anterior.
-# 5) Consulta para listar los hoteles que tienen habitaciones disponibles pero no han sido 
+USE Hoteles;
+# 6) Consulta para buscar hoteles cuya ubicación termina con un texto específico.
+SELECT *
+FROM Hotel
+WHERE ubicacion LIKE '%na';
+# 7) Consulta para obtener las reservas de un cliente (por email) realizadas en el mes anterior.
+SELECT Reserva.codigo_reserva, Reserva.fecha_llegada, Reserva.habitacion_id, Reserva.razon_social, Usuarios.correo
+FROM Reserva
+INNER JOIN Usuarios 
+ON Reserva.id_usuario = Usuarios.id_usuario 
+WHERE Usuarios.correo = 'jhernandez@correo.com' AND MONTH(Reserva.fecha_llegada) = MONTH (CURRENT_DATE() - INTERVAL 1 MONTH);
+
+# 8) Consulta para calcular el promedio de reservas diarias en un hotel. ADASDASFSDF
+SELECT AVG(reservas_diarias) AS promedio_reservas    
+FROM (
+    SELECT COUNT(fecha_llegada) AS reservas_diarias FROM reserva
+    INNER JOIN Hotel ON reserva.razon_social = hotel.razon_social
+    GROUP BY DATE(fecha_llegada)) AS reservas_dia
+
+# 9) Consulta para identificar el hotel con la mayor ocupación en el mes anterior.
+SELECT Hotel.razon_social, Hotel.nombre, Habitacion.habitacion_id,Habitacion.disponible, Reserva.fecha_llegada
+FROM Hotel
+INNER JOIN Habitacion 
+ON Hotel.razon_social = Habitacion.razon_social
+INNER JOIN Reserva ON Reserva.habitacion_id = Habitacion.habitacion_id
+WHERE Habitacion.disponible = "Disponible" AND MONTH (Reserva.fecha_llegada) = MONTH (CURRENT_DATE() - INTERVAL 1 MONTH);
+
+# 10) Consulta para listar los hoteles que tienen habitaciones disponibles pero no han sido 
 # reservadas en el último mes.
+SELECT Hotel.nombre, Habitacion.disponible, Habitacion.habitacion_id, Reserva.fecha_salida 
+FROM Hotel
+INNER JOIN Habitacion 
+ON Hotel.razon_social = Habitacion.razon_social
+INNER JOIN Reserva 
+ON Reserva.habitacion_id = Habitacion.habitacion_id
+WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);

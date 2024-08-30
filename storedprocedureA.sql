@@ -1,22 +1,8 @@
 USE Hoteles;
 
-# AGREGAR HOTELES
+# AGREGAR USUARIOS - Son datos de entrada
 DELIMITER //
-CREATE PROCEDURE agregar_hotel (IN p_razon_social VARCHAR(10),
-IN p_nombre VARCHAR(60),
-IN p_ubicacion VARCHAR(60),
-IN p_codigo_reserva VARCHAR(60),
-IN p_habitacion_id VARCHAR(10),
-IN p_id_usuario VARCHAR(20))
-BEGIN
-    INSERT INTO Hotel (razon_social, nombre, ubicacion, codigo_reserva, habitacion_id, id_usuario)
-    VALUES (p_razon_social, p_nombre, p_ubicacion, p_codigo_reserva, p_habitacion_id, p_id_usario);
-END;
-DELIMITER;
-
-# AGREGAR CLIENTES
-DELIMITER //
-CREATE PROCEDURE agregar_usuarios(IN p_id_usuario VARCHAR(20), 
+CREATE PROCEDURE agregar_usuarios (IN p_id_usuario VARCHAR(20), 
 IN p_nombre VARCHAR(60), 
 IN p_apellido VARCHAR(20),
 IN p_correo VARCHAR(60),
@@ -81,7 +67,7 @@ BEGIN
 END //
 DELIMITER;
 
-CALL agregar_nueva_reserva ('R022', '2024-08-29', '2024-08-30', 'H003', 'Anita45', 'P003', 'RS004');
+CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Anita45', 'P003', 'H1357');
 SELECT * FROM reserva;
 SELECT * FROM Pago;
 SELECT * FROM Hotel; 
@@ -96,5 +82,4 @@ BEGIN
     DELETE FROM Reserva WHERE codigo_reserva = p_codigo_reserva;
 END //
 DELIMITER;
-CALL cancelar_reserva('R001');
-SELECT * FROM Reserva;
+CALL cancelar_reserva('R029');
