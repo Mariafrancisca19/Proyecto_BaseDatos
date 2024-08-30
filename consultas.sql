@@ -1,20 +1,15 @@
 # Consultas Francisca
 
-SELECT 
-    hotel.nombre AS Hotel,
-    COUNT(reserva.codigo_reserva) AS "Numero de Reservas"
-FROM 
-    Hotel 
-JOIN 
-    Reserva ON hotel.razon_social = reserva.razon_social
+SELECT hotel.nombre AS "Hotel",
+COUNT(reserva.codigo_reserva) AS "Numero de Reservas"
+FROM Hotel 
+JOIN Reserva 
+ON hotel.razon_social = reserva.razon_social
 GROUP BY 
-    hotel.razon_social
-ORDER BY 
-    "Numero de Reservas" DESC;
+hotel.razon_social
+ORDER BY "Numero de Reservas" DESC;
 
-
-
--- ○ habitaciones disponibles hay en un hotel específico en una fecha dada.
+-- Cuántas habitaciones disponibles hay en un hotel específico en una fecha dada.
 
 SELECT COUNT(habitacion.disponible) AS Habitaciones_Disponibles, hotel.nombre FROM habitacion 
 INNER JOIN hotel ON habitacion.razon_social = hotel.razon_social

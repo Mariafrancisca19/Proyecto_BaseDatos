@@ -1,3 +1,5 @@
+DROP DATABASE Hoteles;
+
 CREATE DATABASE Hoteles;
 use Hoteles;
 #TABLA USUARIOS
@@ -56,18 +58,9 @@ ALTER TABLE Codigos
   ADD FOREIGN KEY razon_social(razon_social) REFERENCES Hotel(razon_social) ON DELETE CASCADE;
 
 
-SELECT * FROM Codigos;
 # Tabla donde se agregan los datos que dispara el TRIGGER
 CREATE TABLE Notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_notificacion VARCHAR(50),
     mensaje TEXT,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
-
-
-SELECT * FROM notificaciones;
-
-
-
-
-

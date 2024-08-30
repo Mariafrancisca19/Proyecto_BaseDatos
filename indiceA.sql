@@ -1,4 +1,5 @@
 
+# Consultas rápidas
 # INDEX que muestra los hoteles según la ubicación
 CREATE INDEX ubicacion_hotel
 ON Hotel (ubicacion);
@@ -9,7 +10,7 @@ SELECT * FROM Hotel WHERE ubicacion = 'Santa Ana';
 CREATE INDEX habitaciones_dispo
 ON Habitacion (disponible, razon_social);
 
-SELECT * FROM Habitacion WHERE disponible = 'Disponible' AND razon_social = 'RS001';
+SELECT * FROM Habitacion WHERE disponible = 'Disponible' AND razon_social = 'RS002';
 
 
 
