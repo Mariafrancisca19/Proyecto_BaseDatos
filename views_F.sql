@@ -1,3 +1,6 @@
+-- --  views --> vistas almacenan una consulta a la cuál se le da un nombre y puede ser utilizada posteriormente.
+--               Permiten a los usuarios acceder a una parte específica de la base de datos y simplifican la complejidad de las consultas.
+
 -- CREATE VIEWS RESERVAS REALIZADAS EN EL DIA ACTUAL
 USE Hoteles;
 CREATE VIEW actualizacion_reserva_dia AS 

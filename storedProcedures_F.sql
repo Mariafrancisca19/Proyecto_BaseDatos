@@ -12,3 +12,6 @@ SELECT * FROM habitacion
 CALL disponibilidad_habitacion("2024-11-27")
 
 SELECT * FROM reserva
+
+
+

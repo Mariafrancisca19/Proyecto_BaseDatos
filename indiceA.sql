@@ -4,5 +4,5 @@ CREATE INDEX filtro_pagos
 ON Pago (codigo_de_pago);
 SHOW INDEX FROM codigos_pagos;
 
-SELECT * FROM Pago;
+SELECT * FROM Pago;         
 

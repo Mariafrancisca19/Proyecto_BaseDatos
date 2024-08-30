@@ -1,6 +1,6 @@
 USE Hoteles;
 
--- Triggers actualizacion automatica de la disponibilidad de habitaciones cambios
+-- Triggers actualizacion automatica de la disponibilidad de habitaciones
 
 DELIMITER //
 CREATE TRIGGER actualizaion_disponibilidad_habitacion
