@@ -3,7 +3,7 @@ USE Hoteles;
 DELIMITER //
 CREATE PROCEDURE disponibilidad_habitacion (IN disponibilidad_fecha DATE)
 BEGIN  
-    SELECT Hotel.nombre,Habitacion.num_habitacion,Habitacion.disponible, Reserva.fecha_salida 
+    SELECT Hotel.nombre, Habitacion.num_habitacion, Habitacion.disponible, Reserva.fecha_salida 
     FROM habitacion 
     INNER JOIN Hotel ON Hotel.razon_social = Habitacion.razon_social 
     RIGHT JOIN Reserva ON Reserva.razon_social = Habitacion.razon_social
@@ -12,9 +12,10 @@ BEGIN
     WHERE Reserva.fecha_salida < disponibilidad_fecha;
 END //
 DELIMITER;
-SELECT * FROM Reserva;
-DROP PROCEDURE disponibilidad_habitacion;
-SELECT * FROM Habitacion;
 CALL disponibilidad_habitacion("2024-12-1");
+DROP PROCEDURE disponibilidad_habitacion;
 
-SELECT * FROM reserva
+
+SELECT * FROM Reserva;
+SELECT * FROM Habitacion;
+SELECT * FROM reserva;
