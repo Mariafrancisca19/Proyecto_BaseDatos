@@ -15,7 +15,64 @@ DELIMITER;
 DROP PROCEDURE agregar_usuarios;
 
 SELECT * FROM Usuarios;
-CALL agregar_usuarios("Angel99", 'Angel', 'Garcia', 'agarcia@correo.com', 81896543);
+CALL agregar_usuarios("Anita45", 'Ana', 'Garcia', 'anag@unn.com', 56895424);
+
+# AGREGAR HABITACIONES
+DELIMITER //
+CREATE PROCEDURE agregar_habitaciones (IN p_habitacion_id VARCHAR(10), 
+IN p_num_habitacion INT, 
+IN p_tipo_habitacion TEXT)
+BEGIN
+    INSERT INTO Habitacion (habitacion_id, num_habitacion, tipo_habitacion) 
+    VALUES (p_habitacion_id, p_num_habitacion, p_tipo_habitacion);
+END //
+DELIMITER;
+
+CALL agregar_habitaciones('H002', 507, 'VIP');
+
+SELECT * FROM Habitacion;
+SELECT * FROM Reserva;
+DROP PROCEDURE agregar_habitaciones;
+# modificar el valor cada vez que se agrega un dato
+ALTER TABLE habitacion ALTER disponible SET DEFAULT 0;
+
+# AGREGAR PAGO
+DELIMITER //
+CREATE PROCEDURE agregar_pago(IN p_codigo_de_pago VARCHAR(10), p_tipo_pago VARCHAR(10))
+BEGIN
+    INSERT INTO Pago (codigo_de_pago, tipo_pago) 
+    VALUES (p_codigo_de_pago, p_tipo_pago);
+END //
+DELIMITER;
+CALL agregar_pago ('P002', 'Plazos');
+
+SELECT * FROM Pago;
+DROP PROCEDURE agregar_pago;
+
+# AGREGAR RESERVA
+# Se modificó el agregar_nueva_reserva para que tenga la llave foránea de Hotel
+DROP PROCEDURE agregar_nueva_reserva;
+DELIMITER //
+CREATE PROCEDURE agregar_nueva_reserva(IN p_codigo_reserva VARCHAR(10), 
+IN p_fecha_llegada DATE, 
+IN p_fecha_salida DATE, 
+IN p_habitacion_id VARCHAR(10),
+IN p_id_usuario VARCHAR(20),
+IN p_codigo_de_pago VARCHAR(10),
+IN p_razon_social VARCHAR(20)
+)
+BEGIN
+    INSERT INTO Reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, id_usuario, codigo_de_pago, razon_social) 
+    VALUES (p_codigo_reserva, p_fecha_llegada, p_fecha_salida, p_habitacion_id, p_id_usuario, p_codigo_de_pago, p_razon_social);
+END //
+DELIMITER;
+
+CALL agregar_nueva_reserva ('R002', '2024-06-12', '2024-06-15', 'H003', 'Anita45', 'P003', 'H1357');
+SELECT * FROM reserva;
+SELECT * FROM Pago;
+SELECT * FROM Hotel; 
+
+SELECT * FROM habitacion;
 
 
 # PROCEDURE QUE ELIMINA RESERVAS SEGÚN EL CÓDIGO DE RESERVA

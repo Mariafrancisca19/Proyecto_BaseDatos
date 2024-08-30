@@ -28,3 +28,4 @@ INNER JOIN Hotel
 ON Hotel.razon_social = Habitacion.razon_social
 RIGHT JOIN Reserva 
 ON Reserva.razon_social = Habitacion.razon_social;
+SELECT * FROM reserva
