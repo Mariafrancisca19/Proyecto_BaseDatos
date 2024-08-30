@@ -20,7 +20,7 @@ SELECT *
 FROM consultar_reserva_fecha_especifica
 WHERE fecha_llegada = '2024-07-17';
 
-DROP VIEW consultar_reserva_fecha_especifica;
+
 
 -- CREATE VIEWS RESERVAS REALIZADAS EN EL DIA ACTUAL - FRANCISCA
 USE Hoteles;

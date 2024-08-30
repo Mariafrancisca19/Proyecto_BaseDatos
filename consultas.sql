@@ -1,4 +1,44 @@
-USE Hoteles;
+# Consultas Francisca
+
+SELECT 
+    hotel.nombre AS Hotel,
+    COUNT(reserva.codigo_reserva) AS "Numero de Reservas"
+FROM 
+    Hotel 
+JOIN 
+    Reserva ON hotel.razon_social = reserva.razon_social
+GROUP BY 
+    hotel.razon_social
+ORDER BY 
+    "Numero de Reservas" DESC;
+
+
+
+-- ○ habitaciones disponibles hay en un hotel específico en una fecha dada.
+
+SELECT COUNT(habitacion.disponible) AS Habitaciones_Disponibles, hotel.nombre FROM habitacion 
+INNER JOIN hotel ON habitacion.razon_social = hotel.razon_social
+INNER JOIN reserva ON reserva.habitacion_id = habitacion.habitacion_id
+WHERE disponible = "Disponible"  AND reserva.fecha_salida < "2024-12-09" AND hotel.razon_social = "RS002"
+GROUP BY hotel.nombre;
+
+-- ○ buscar hoteles por nombre.
+
+SELECT * FROM hotel
+WHERE nombre = 'Sheraton'
+
+-- ○ buscar hoteles cuya ubicación comienza con un texto específico.
+
+SELECT ubicacion FROM hotel
+WHERE ubicacion like 'M%'
+
+-- ○ buscar hoteles cuya ubicación termina con un texto específico.
+
+SELECT ubicacion FROM hotel
+WHERE ubicacion like '%e'
+
+# Consultas Alejandra
+
 # 6) Consulta para buscar hoteles cuya ubicación termina con un texto específico.
 SELECT *
 FROM Hotel
@@ -34,3 +74,4 @@ ON Hotel.razon_social = Habitacion.razon_social
 INNER JOIN Reserva 
 ON Reserva.habitacion_id = Habitacion.habitacion_id
 WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
+

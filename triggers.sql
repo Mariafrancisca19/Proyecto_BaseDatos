@@ -23,11 +23,7 @@ END //
 DELIMITER ;
 
 
-DROP TRIGGER actualizaion_disponibilidad_habitacion;
-SELECT * FROM habitacion;
-SELECT * FROM reserva
-
 -- Comprobacion de la actualizacion de la disponibilidad de habitacion
 INSERT INTO reserva (codigo_reserva, fecha_llegada, fecha_salida, habitacion_id, id_usuario,codigo_de_pago, razon_social) 
-VALUES ("R031", "2024-06-28", "2024-06-30", "H028", "Ale23", "P001", "RS005");
+VALUES ("R032", "2024-06-28", "2024-06-30", "H001", "Ale23", "P001", "RS005");
 
