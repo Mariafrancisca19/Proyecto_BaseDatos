@@ -10,11 +10,9 @@ ORDER BY 'Cantidad de reservas' DESC;
 # 2) Consulta para contar cuántas habitaciones disponibles hay en un hotel específico en una fecha dada. (habitacion, hotel, reserva)
 SELECT hotel.nombre, COUNT(habitacion.disponible) AS 'Habitaciones disponibles'
 FROM habitacion
-INNER JOIN hotel
-ON hotel.razon_social = habitacion.razon_social
-INNER JOIN reserva
-ON reserva.habitacion_id = habitacion.habitacion_id
-WHERE disponible = 'Disponible' AND fecha_salida < '2024-07-11' AND hotel.razon_social = 'RS001';
+INNER JOIN hotel ON hotel.razon_social = habitacion.razon_social
+INNER JOIN reserva ON reserva.habitacion_id = habitacion.habitacion_id
+WHERE fecha_salida < '2024-07-11' AND hotel.razon_social = 'RS001';
 
 SELECT * FROM reserva;
 SELECT * FROM habitacion;
@@ -50,19 +48,17 @@ FROM(
 # 8) Consulta para identificar el hotel con la mayor ocupación en el mes anterior.
 SELECT hotel.nombre AS 'Hotel', COUNT(habitacion.disponible) 'Ocupación'
 FROM hotel
-INNER JOIN habitacion
-on hotel.razon_social = habitacion.razon_social
-INNER JOIN reserva
-ON reserva.habitacion_id = habitacion.habitacion_id
-WHERE habitacion.disponible = 'No disponible' AND MONTH(Reserva.fecha_llegada) = MONTH (CURRENT_DATE() - INTERVAL 1 MONTH)
+INNER JOIN habitacion ON hotel.razon_social = habitacion.razon_social
+INNER JOIN reserva ON reserva.habitacion_id = habitacion.habitacion_id
+WHERE habitacion.disponible = 'No disponible' AND MONTH(Reserva.fecha_llegada) = MONTH(CURRENT_DATE()-INTERVAL 1 MONTH)
 GROUP BY hotel.nombre;
 
 # 9) Consulta para listar los hoteles que tienen habitaciones disponibles pero no han sido reservadas en el último mes.
-SELECT Hotel.nombre, Habitacion.disponible, Habitacion.habitacion_id, Reserva.fecha_salida 
+SELECT Hotel.nombre, Habitacion.habitacion_id, Reserva.fecha_salida 
 FROM Hotel
 INNER JOIN Habitacion 
 ON Hotel.razon_social = Habitacion.razon_social
-INNER JOIN Reserva 
+LEFT JOIN Reserva 
 ON Reserva.habitacion_id = Habitacion.habitacion_id
-WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
+WHERE Reserva.fecha_salida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
 

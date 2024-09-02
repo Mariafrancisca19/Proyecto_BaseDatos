@@ -1,5 +1,4 @@
 DROP DATABASE Hoteles;
-
 CREATE DATABASE Hoteles;
 use Hoteles;
 #TABLA USUARIOS
