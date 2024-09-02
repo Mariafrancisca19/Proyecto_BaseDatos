@@ -57,7 +57,7 @@ SELECT Hotel.razon_social, Hotel.nombre, Habitacion.habitacion_id,Habitacion.dis
 FROM Hotel
 INNER JOIN Habitacion 
 ON Hotel.razon_social = Habitacion.razon_social
-INNER JOIN Reserva ON Reserva.habitacion_id = Habitacion.habitacion_id
+LEFT JOIN Reserva ON Reserva.habitacion_id = Habitacion.habitacion_id
 WHERE Habitacion.disponible = "Disponible" AND MONTH (Reserva.fecha_llegada) = MONTH (CURRENT_DATE() - INTERVAL 1 MONTH);
 
 # 10) Consulta para listar los hoteles que tienen habitaciones disponibles pero no han sido 
@@ -66,7 +66,27 @@ SELECT Hotel.nombre, Habitacion.disponible, Habitacion.habitacion_id, Reserva.fe
 FROM Hotel
 INNER JOIN Habitacion 
 ON Hotel.razon_social = Habitacion.razon_social
-INNER JOIN Reserva 
+LEFT JOIN Reserva 
 ON Reserva.habitacion_id = Habitacion.habitacion_id
-WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
+WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
 
+# Mostrar el nombre del hotel, la ubicación y el nombre de los clientes 
+# que han hecho una reserva en ese hotel
+SELECT hotel.nombre, hotel.ubicacion, usuarios.nombre
+FROM hotel
+INNER JOIN usuarios
+ON hotel 
+
+SELECT * FROM hotel;
+SELECT * FROM usuarios;
+
+
+
+# Mostrar los hoteles en los que un usuario específico ha hecho reservas filtrar por id de usuario.
+
+
+# Mostrar la cantidad total de habitaciones reservadas por cada usuario.
+
+
+# Muestra el tipo de pago realizado por los usuarios que han reservado habitaciones,
+# junto con el nombre del usuario 

@@ -7,6 +7,8 @@ USE Hoteles;
  WHERE fecha_llegada < fecha_salida;
 
 SELECT * FROM consultar_reservas;
+SELECT * FROM reserva;
+SELECT * FROM habitacion;
 DROP VIEW consultar_reservas;
 
 # VIEW - Reservas realizadas según una fecha en epecífico
@@ -20,6 +22,7 @@ SELECT *
 FROM consultar_reserva_fecha_especifica
 WHERE fecha_llegada = '2024-07-17';
 
+SELECT * FROM reserva;
 
 
 -- CREATE VIEWS RESERVAS REALIZADAS EN EL DIA ACTUAL - FRANCISCA

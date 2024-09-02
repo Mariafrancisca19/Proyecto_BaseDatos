@@ -14,7 +14,7 @@ END //
 DELIMITER;
 
 SELECT * FROM Usuarios;
-CALL agregar_usuarios("Anita46", 'Ana', 'Mora', 'anam@correo.com', 40804000);
+CALL agregar_usuarios("Angel25", 'Angel', 'Mora', 'amora@correo.com', 40804000);
 
 # AGREGAR HABITACIONES
 DELIMITER //
@@ -27,8 +27,9 @@ BEGIN
     VALUES (p_habitacion_id, p_num_habitacion, p_tipo_habitacion,p_razon_social);
 END //
 DELIMITER;
+SELECT * FROM habitacion;
 
-CALL agregar_habitaciones('H031', 502, 'VIP',"RS001");
+CALL agregar_habitaciones('H040', 502, 'VIP',"RS005");
 
 
 # PROCEDURE QUE ELIMINA RESERVAS SEGÚN EL CÓDIGO DE RESERVA
@@ -38,7 +39,7 @@ BEGIN
     DELETE FROM Reserva WHERE codigo_reserva = p_codigo_reserva;
 END //
 DELIMITER;
-
+SELECT * FROM reserva;
 CALL cancelar_reserva('R029');
 
 
@@ -58,6 +59,8 @@ BEGIN
     WHERE Reserva.fecha_salida < disponibilidad_fecha;
 END //
 DELIMITER;
-CALL disponibilidad_habitacion("2024-05-30");
+CALL disponibilidad_habitacion("2024-05-22");
 
+SELECT * FROM habitacion;
 
+SELECT * FROM reserva;

@@ -14,7 +14,10 @@ INNER JOIN hotel
 ON hotel.razon_social = habitacion.razon_social
 INNER JOIN reserva
 ON reserva.habitacion_id = habitacion.habitacion_id
-WHERE disponible = 'Disponible' AND fecha_llegada < '2024-07-09' AND hotel.razon_social = 'RS003';
+WHERE disponible = 'Disponible' AND fecha_salida < '2024-07-11' AND hotel.razon_social = 'RS001';
+
+SELECT * FROM reserva;
+SELECT * FROM habitacion;
 
 # 3) Consulta para buscar hoteles por nombre.
 SELECT * FROM hotel
@@ -33,6 +36,8 @@ FROM reserva
 INNER JOIN usuarios
 ON reserva.id_usuario = usuarios.id_usuario
 WHERE correo = 'aconde@correo.com' AND MONTH(reserva.fecha_llegada) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH);
+
+SELECT * FROM reserva;
 
 # 7) Consulta para calcular el promedio de reservas diarias en un hotel.
 SELECT AVG(reservas_diarias) AS 'Promedio'
@@ -60,3 +65,4 @@ ON Hotel.razon_social = Habitacion.razon_social
 INNER JOIN Reserva 
 ON Reserva.habitacion_id = Habitacion.habitacion_id
 WHERE Habitacion.disponible = "Disponible" AND Reserva.fecha_salida <= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
+
